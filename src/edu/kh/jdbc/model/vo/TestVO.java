@@ -1,21 +1,22 @@
-package edu.kh.model.vo;
+package edu.kh.jdbc.model.vo;
 
 public class TestVO {
 	private int testNo;
 	private String testTitle;
 	private String testContent;
 	
-	public TestVO() {
-		// TODO Auto-generated constructor stub
-	}
+	// 기본생성자
+	public TestVO() {}
 
+	// 매개변수 생성자 
 	public TestVO(int testNo, String testTitle, String testContent) {
 		super();
 		this.testNo = testNo;
 		this.testTitle = testTitle;
 		this.testContent = testContent;
 	}
-
+	
+	// getter/setter
 	public int getTestNo() {
 		return testNo;
 	}
@@ -44,7 +45,7 @@ public class TestVO {
 	public String toString() {
 		return "TestVO [testNo=" + testNo + ", testTitle=" + testTitle + ", testContent=" + testContent + "]";
 	}
-	
-	
 
+	
+	
 }

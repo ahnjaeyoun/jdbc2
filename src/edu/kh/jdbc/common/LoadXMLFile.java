@@ -11,7 +11,7 @@ public class LoadXMLFile {
 		// XML 파일 읽어오기 (Properties, FileInputStream)
 		
 		try {
-			Properties prop = new Properties();
+			Properties prop = new Properties(); 
 			
 			// driver.xml 파일을 읽어오기 위한 InputStream 객체 생성
 			FileInputStream fis = new FileInputStream("driver.xml");
@@ -21,6 +21,7 @@ public class LoadXMLFile {
 			prop.loadFromXML(fis);
 			
 			System.out.println(prop);
+			
 			
 			// Property : 속성(데이터)
 			
@@ -36,6 +37,7 @@ public class LoadXMLFile {
 			
 			System.out.println(conn);
 			
+			
 			/*
 			 * 왜 XML 파일을 이용해서 DB 연결 정보를 읽어와야 할까?
 			 * 
@@ -44,13 +46,12 @@ public class LoadXMLFile {
 			 * 3. 재 컴파일을 진행하지 않기 위해서
 			 * - 코드가 길수록 컴파일에 소요되는 시간이 크다
 			 * -> 코드 수정으로 인한 컴파일 소요시간을 없앰.
-			 *  (파일의 내용을 읽어오는 코드만 작성해두면
-			 *  java 코드 수정 없이, 파일 내용만 수정하면
+			 * 	(파일의 내용을 읽어오는 코드만 작성해두면
+			 * 	Java 코드 수정 없이, 파일 내용만 수정하면
 			 *  재 컴파일은 수행되지 않는다)
-			 *  
-			 * 4. XML 파일에 작성된 문자열 형태를 그대로 읽어오기 때문에
-			 * 		SQL 작성 시 좀 더 편리해진다. 
 			 * 
+			 * 4. XML 파일에 작성된 문자열 형태를 그대로 읽어오기 때문에
+			 * 		SQL 작성 시 좀 더 편리해진다.
 			 * 
 			 * */
 			
@@ -58,11 +59,8 @@ public class LoadXMLFile {
 			
 			
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }

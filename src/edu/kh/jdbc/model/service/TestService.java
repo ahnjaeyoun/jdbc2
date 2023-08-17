@@ -9,31 +9,30 @@ import java.sql.SQLException;
 import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import edu.kh.jdbc.model.dao.TestDAO;
-import edu.kh.model.vo.TestVO;
+import edu.kh.jdbc.model.vo.TestVO;
 
 public class TestService {
 	// Service : 비즈니스 로직(데이터 가공, 트랜잭션 제어) 처리
-	// -> 실제 프로그램이 제공하는 기능을 모아놓은 클래스
+	//-> 실제 프로그램이 제공하는 기능을 모아놓은 클래스
 	
 	// 하나의 Service 메서드에서 n개의 DAO 메서드를 호출하여
 	// 이를 하나의 트랜잭션 단위로 취급하여
-	// 한번에 commit, rollback을 수행할 수 있다.
+	// 한번에 commit, rollback 을 수행할 수 있다.
 	
 	private TestDAO dao = new TestDAO();
 	
 	
-	public int insert(TestVO vo1) throws SQLException {
+	public int insert(TestVO vo1) throws SQLException{
 		
-		// 커넥션 생성
+		// 커넥션 생성 
 		Connection conn = getConnection();
-		
-
+	
 		// DAO 메서드 호출하여 수행 후 결과 반환받기
 		// -> Service에서 생성한 Connection 객체를 반드시 같이 전달!
 		int result = dao.insert(conn, vo1);
 		
 		// 트랜잭션 제어
-		if(result > 0) commit(conn);
+		if (result > 0) commit(conn);
 		else			rollback(conn);
 		
 		// 커넥션 반환
@@ -41,8 +40,6 @@ public class TestService {
 		
 		// 결과 반환
 		return result;
-		
-		
 	}
 
 
@@ -53,7 +50,7 @@ public class TestService {
 	 * @return result
 	 */
 	public int insert(TestVO vo1, TestVO vo2, TestVO vo3) {
-	
+		
 		// 1. Connection 생성 (무조건 1번)
 		Connection conn = getConnection();
 		
@@ -71,13 +68,40 @@ public class TestService {
 				rollback(conn);
 			}
 			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		return result; // insert 3회 결과 반환
 	}
-	
 
+
+	/**번호가 일치하는 행 제목, 내용 수정 service
+	 * @param vo
+	 * @return result
+	 */
+	public int update(TestVO vo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.update(conn, vo);
+		
+		if(result > 0) commit(conn);
+		else			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
